@@ -9,7 +9,9 @@ import UIKit
 import Kingfisher
 
 class CharactersTableViewCell: UITableViewCell {
-
+    
+    
+    
     @IBOutlet weak var thumbImageView: UIImageView!
     @IBOutlet weak var nameCharacterCorrectLabel: UILabel!
     @IBOutlet weak var nameCharacterSelectedLabel: UILabel!

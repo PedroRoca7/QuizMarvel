@@ -34,28 +34,24 @@ class QuizViewModel {
     
     func loadHeros() {
         
-            var nameSort = sortNamePerson()
-            
-            MarvelAPI.loadHeros(name: nameSort) { [weak self] result in
-                guard let self = self else { return }
-                
-                if let result = result {
-                    guard let heroe = result.data.results.first else { return }
-                    self.heroe = heroe
-                    print("Total:", result.data.total)
-                    if self.validadeImageNotFound(thumbnail: heroe.thumbnail.url, formatImage: heroe.thumbnail.formatImage){
-                        self.loadHeros()
-                    }
-                    self.refreshQuiz(thumbnail: heroe.thumbnail.url, name: heroe.name)
-                    if heroe.thumbnail.url != self.urlTest && heroe.thumbnail.formatImage != self.formatImageTest {
-                        self.delegate?.success(heroe: heroe)
-                    }
-                } else {
-                    self.delegate?.failure()
-                }
+        var nameSort = sortNamePerson()
+        
+        MarvelAPI.loadHero(name: nameSort) { [weak self ] hero in
+            guard let self = self else { return }
+            guard let hero = hero else { self.delegate?.failure()
+                return
             }
+            self.heroe = hero
+            if self.validadeImageNotFound(thumbnail: hero.thumbnail.url, formatImage: hero.thumbnail.formatImage){
+                self.loadHeros()
+            }
+            self.refreshQuiz(thumbnail: hero.thumbnail.url, name: hero.name)
+            if hero.thumbnail.url != self.urlTest && hero.thumbnail.formatImage != self.formatImageTest {
+                self.delegate?.success(heroe: hero)
+            }
+        }
     }
-    
+   
     private func sortNamePerson() -> String {
         let person = allNamePerson.namesPerson
         let numberSort = Int(arc4random_uniform(UInt32(person.count)))
