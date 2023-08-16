@@ -17,8 +17,20 @@ class CellView: UIView {
         image.layer.cornerRadius = 15
         image.layer.borderColor = UIColor.black.cgColor
         image.layer.borderWidth = 1
+        image.clipsToBounds = true
         
         return image
+    }()
+    
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews:[nameCorrectLabel, nameSelectedLabel])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .fill
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.spacing = 5
+        
+        return stackView
     }()
     
     lazy var nameCorrectLabel: UILabel = {
@@ -26,6 +38,9 @@ class CellView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .green
         label.font = UIFont.systemFont(ofSize: 16)
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         
         return label
     }()
@@ -35,11 +50,15 @@ class CellView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .red
         label.font = UIFont.systemFont(ofSize: 16)
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         
         return label
     }()
  
     //MARK: Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addElementsView()
@@ -52,8 +71,7 @@ class CellView: UIView {
     
     private func addElementsView() {
         self.addSubview(self.personImageView)
-        self.addSubview(self.nameCorrectLabel)
-        self.addSubview(self.nameSelectedLabel)
+        self.addSubview(self.stackView)
     }
     
     private func configConstraints() {
@@ -62,16 +80,14 @@ class CellView: UIView {
             
             self.personImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
             self.personImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            self.personImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
-            self.personImageView.widthAnchor.constraint(equalToConstant: 95),
+            self.personImageView.widthAnchor.constraint(equalToConstant: 80),
+            self.personImageView.heightAnchor.constraint(equalToConstant: 80),
             
-            self.nameCorrectLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            self.nameCorrectLabel.leadingAnchor.constraint(equalTo: personImageView.trailingAnchor, constant: 10),
-            self.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            self.stackView.topAnchor.constraint(equalTo: self.topAnchor,constant: 5),
+            self.stackView.leadingAnchor.constraint(equalTo: personImageView.trailingAnchor, constant: 10),
+            self.stackView.widthAnchor.constraint(equalToConstant: 200),
+            self.stackView.heightAnchor.constraint(equalToConstant: 80)
             
-            self.nameSelectedLabel.topAnchor.constraint(equalTo: nameCorrectLabel.bottomAnchor, constant: 10),
-            self.leadingAnchor.constraint(equalTo: nameCorrectLabel.leadingAnchor),
-            self.nameSelectedLabel.trailingAnchor.constraint(equalTo: nameCorrectLabel.trailingAnchor)
         ])
         
         

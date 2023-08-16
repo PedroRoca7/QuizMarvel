@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class InitialScreenViewController: UIViewController {
     
@@ -15,13 +16,17 @@ class InitialScreenViewController: UIViewController {
         return viewScreen
     }()
     
+    private let disposeBag = DisposeBag()
+    
     override func loadView() {
         self.view = viewScreen
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        viewScreen.startButton.rx.tap.bind {
+            self.navigationController?.pushViewController(QuizViewController(), animated: true)
+        }.disposed(by: disposeBag)
     }
 
 

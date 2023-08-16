@@ -25,7 +25,7 @@ class InitialScreen: UIView {
         startButton.setTitle("Start", for: .normal)
         startButton.setTitleColor(.white, for: .normal)
         startButton.titleLabel?.font = UIFont(name: "Arial Negrito", size: 20)
-        startButton.layer.cornerRadius = 10
+        startButton.layer.cornerRadius = 15
         startButton.backgroundColor = .orange
         
         return startButton
@@ -57,9 +57,10 @@ class InitialScreen: UIView {
             self.backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         
             self.startButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.startButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -50),
+            self.startButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -250),
             self.startButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 50),
-            self.startButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -50)
+            self.startButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -50),
+            self.startButton.heightAnchor.constraint(equalToConstant: 70)
             
             
         ])

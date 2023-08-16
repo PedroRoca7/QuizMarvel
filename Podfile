@@ -8,7 +8,9 @@ target 'QuizMarvel' do
     pod 'Alamofire'
     pod 'Kingfisher'
     pod 'SwiftHash'
-
+    pod  'RxSwift'
+    pod  'RxCocoa' 
+  
   # Pods for QuizMarvel
 
   target 'QuizMarvelTests' do

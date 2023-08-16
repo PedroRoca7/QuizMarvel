@@ -34,20 +34,21 @@ class QuizViewModel {
     
     func loadHeros() {
         
-        var nameSort = sortNamePerson()
+        let nameSort = sortNamePerson()
         
         MarvelAPI.loadHero(name: nameSort) { [weak self ] hero in
             guard let self = self else { return }
             guard let hero = hero else { self.delegate?.failure()
                 return
             }
-            self.heroe = hero
-            if self.validadeImageNotFound(thumbnail: hero.thumbnail.url, formatImage: hero.thumbnail.formatImage){
+            guard let heroe = hero.data.results.first else { return }
+            self.heroe = heroe
+            if self.validadeImageNotFound(thumbnail: heroe.thumbnail.url, formatImage: heroe.thumbnail.formatImage){
                 self.loadHeros()
             }
-            self.refreshQuiz(thumbnail: hero.thumbnail.url, name: hero.name)
-            if hero.thumbnail.url != self.urlTest && hero.thumbnail.formatImage != self.formatImageTest {
-                self.delegate?.success(heroe: hero)
+            self.refreshQuiz(thumbnail: heroe.thumbnail.url, name: heroe.name)
+            if heroe.thumbnail.url != self.urlTest && heroe.thumbnail.formatImage != self.formatImageTest {
+                self.delegate?.success(heroe: heroe)
             }
         }
     }
@@ -70,14 +71,13 @@ class QuizViewModel {
         let person = allNamePerson.namesPerson
         
         while options.count < 3 {
-            var i = Int(arc4random_uniform(UInt32(person.count)))
+            let i = Int(arc4random_uniform(UInt32(person.count)))
             if person[i] != name {
                 options.append(person[i])
             }
         }
         options.append(name)
         options.sort()
-        print(options)
         
         quiz = Quiz.init(image: thumbnail, options: options, correctedAnswer: name)
     }

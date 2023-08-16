@@ -7,7 +7,8 @@
 
 import UIKit
 import Kingfisher
-import SwiftUI
+import RxSwift
+import RxCocoa
 
 class QuizViewController: UIViewController {
     
@@ -22,9 +23,9 @@ class QuizViewController: UIViewController {
         
         return viewModel
     }()
-    
-    var seconds = 120
-    var timer = Timer()
+    private let disposedBag = DisposeBag()
+    private var seconds = 120
+    private var timer = Timer()
     
     override func loadView() {
         self.view = viewScreen
@@ -39,10 +40,30 @@ class QuizViewController: UIViewController {
         resetTimeResults()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         getNewQuiz()
+        setupButtonObservers()
+        
     }
-
+    
+    private func setupButtonObservers() {
+        for (index, button) in viewScreen.buttonArray.enumerated() {
+            button.rx.tap
+                .subscribe(onNext: { [weak self] in
+                    self?.buttonTapped(index: index, title: button.currentTitle)
+                })
+                .disposed(by: disposedBag)
+        }
+    }
+    
+    private func buttonTapped(index: Int, title: String?) {
+        if let title = title {
+            viewModel.validadeAnswer(name: title)
+            hiddenButtons()
+            getNewQuiz()
+        }
+    }
+    
     private func resetTimeResults() {
-        seconds = 120
+        seconds = 10
         viewModel.resetTotalanswers()
     }
     
@@ -109,14 +130,6 @@ class QuizViewController: UIViewController {
         resultViewcontroller.totalCorrectAnswers = viewModel.totalCorrectAnswers
         resultViewcontroller.chars = viewModel.characters
         self.navigationController?.pushViewController(resultViewcontroller, animated: true)
-    }
-        
-    @IBAction func selectAnswer(_ sender: UIButton) {
-        if let buttonSelected = sender.currentTitle{
-            viewModel.validadeAnswer(name: buttonSelected)
-            hiddenButtons()
-            getNewQuiz()
-        }
     }
 }
 

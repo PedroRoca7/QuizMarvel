@@ -26,10 +26,9 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //prepara a celula para apresentar na tableView
     func prepareCell(with character: Character) {
-        viewCell.nameCorrectLabel.text = character.nameCorrect
-        viewCell.nameSelectedLabel.text = character.nameSelected
+        viewCell.nameCorrectLabel.text = "Nome correto: \(character.nameCorrect)"
+        viewCell.nameSelectedLabel.text = "Nome selecionado: \(character.nameSelected)"
         if let url = URL(string: character.thumbnail) {
             viewCell.personImageView.kf.indicatorType = .activity
             viewCell.personImageView.kf.setImage(with: url)

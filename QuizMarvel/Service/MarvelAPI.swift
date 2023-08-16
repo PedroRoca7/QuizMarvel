@@ -18,13 +18,12 @@ class MarvelAPI{
     static private let publicKey = ProcessInfo.processInfo.environment["MARVEL_API_PUBLIC_KEY"]
     static private let limit = 1
     
-    class func loadHero(name: String, onComplete: @escaping (Hero?) -> Void) {
+    class func loadHero(name: String, onComplete: @escaping (MarvelInfo?) -> Void) {
         let offset = 0
         let name = "name=\(name.replacingOccurrences(of: " ", with: "%20"))&"
         let url = basePath + "offset=\(offset)&limit=\(limit)&" + name + getCredentials()
-        print(url)
         
-        AF.request(url).responseDecodable(of: Hero.self) { (response) in
+        AF.request(url).responseDecodable(of: MarvelInfo.self) { response in
             switch response.result {
                 case let .success(data):
                     onComplete(data)

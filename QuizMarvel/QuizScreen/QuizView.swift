@@ -46,6 +46,7 @@ class QuizView: UIView {
         timeSlider.minimumValue = 0
         timeSlider.maximumValue = 120
         timeSlider.value = 120
+        timeSlider.isEnabled = false
         
         return timeSlider
     }()
@@ -53,6 +54,7 @@ class QuizView: UIView {
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: buttonArray)
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .fill
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.spacing = 10
@@ -67,10 +69,10 @@ class QuizView: UIView {
             let button = UIButton()
             button.translatesAutoresizingMaskIntoConstraints = false
             button.setTitle("", for: .normal)
-            button.setTitleColor(.blue, for: .normal)
+            button.setTitleColor(.white, for: .normal)
             button.layer.cornerRadius = 10
             button.backgroundColor = .orange
-        
+            button.widthAnchor.constraint(equalToConstant: 300).isActive = true
             buttonArray.append(button)
         }
         return buttonArray
@@ -100,29 +102,32 @@ class QuizView: UIView {
     
     private func configConstraints() {
         
-        NSLayoutConstraint.activate([
+        let guide = self.safeAreaLayoutGuide
         
+        NSLayoutConstraint.activate([
+            
             self.backgroundImage.topAnchor.constraint(equalTo: self.topAnchor),
             self.backgroundImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-            self.timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            self.timeLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: 10),
             self.timeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             self.timeLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 55),
         
-            self.timerSlider.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            self.timerSlider.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.timerSlider.trailingAnchor.constraint(equalTo: self.timeLabel.leadingAnchor, constant: -7),
             self.timerSlider.centerYAnchor.constraint(equalTo: self.timeLabel.centerYAnchor),
             
-            self.personImage.topAnchor.constraint(equalTo: self.bottomAnchor, constant: 7),
-            self.personImage.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            self.personImage.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            self.personImage.topAnchor.constraint(equalTo: timerSlider.bottomAnchor, constant: 10),
+            self.personImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.personImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
-            self.stackView.topAnchor.constraint(equalTo: self.personImage.bottomAnchor),
-            self.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-            self.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            self.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+            self.stackView.topAnchor.constraint(equalTo: self.personImage.bottomAnchor, constant: 5),
+            self.stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.stackView.bottomAnchor.constraint(equalTo: guide.bottomAnchor,constant: -15)
+            
         ])
     }
 }

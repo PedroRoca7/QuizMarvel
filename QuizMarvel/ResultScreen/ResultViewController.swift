@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ResultViewController: UIViewController {
     
@@ -14,6 +16,8 @@ class ResultViewController: UIViewController {
         
         return view
     }()
+    
+    private let disposeBag = DisposeBag()
     
     var chars: [Character] = []
     var totalCorrectAnswers: Int = 0
@@ -39,32 +43,38 @@ class ResultViewController: UIViewController {
         if chars.count == 0 {
             viewScreen.tableView.isHidden = true
         }
+        
+        viewScreen.restartButton.rx.tap.bind {
+            self.navigationController?.pushViewController(QuizViewController(), animated: true)
+        }.disposed(by: disposeBag)
     }
     
     private func configDelegates() {
         viewScreen.tableView.dataSource = self
+        viewScreen.tableView.delegate = self
     }
-
-    
-    
-    @IBAction func close(_ sender: Any) {
-        dismiss(animated: true)
-    }
-    
 }
 
-extension ResultViewController: UITableViewDataSource {
+extension ResultViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    //MARK: TableView DataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chars.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CustomTableViewCell
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell
+        
         let character = chars[indexPath.row]
         cell?.prepareCell(with: character)
-
+        
         return cell ?? UITableViewCell()
+    }
+        
+    //MARK: TableView Delegate
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90.0
     }
 }

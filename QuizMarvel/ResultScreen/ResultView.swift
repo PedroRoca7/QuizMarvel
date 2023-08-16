@@ -28,7 +28,6 @@ class ResultView: UIView {
         answeredQuestion.textColor = .black
         answeredQuestion.font = UIFont(name: "System Semibold", size: 21)
         answeredQuestion.backgroundColor = .white
-        answeredQuestion.alpha = 0.6
         
         return answeredQuestion
     }()
@@ -39,7 +38,7 @@ class ResultView: UIView {
         correctQuestion.textColor = .green
         correctQuestion.font = UIFont(name: "System Semibold", size: 21)
         correctQuestion.backgroundColor = .white
-        correctQuestion.alpha = 0.6
+        
         
         return correctQuestion
     }()
@@ -50,7 +49,6 @@ class ResultView: UIView {
         wrongQuestions.textColor = .red
         wrongQuestions.font = UIFont(name: "System Semibold", size: 21)
         wrongQuestions.backgroundColor = .white
-        wrongQuestions.alpha = 0.6
         
         return wrongQuestions
     }()
@@ -59,7 +57,9 @@ class ResultView: UIView {
         let score = UILabel()
         score.translatesAutoresizingMaskIntoConstraints = false
         score.textColor = .black
-        score.font = UIFont(name: "System Semibold", size: 30)
+        score.font = UIFont.systemFont(ofSize: 36)
+        score.textAlignment = .center
+        score.backgroundColor = .white
         
         return score
     }()
@@ -68,6 +68,7 @@ class ResultView: UIView {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        tableView.backgroundColor = .clear
         
         return tableView
     }()
@@ -103,9 +104,12 @@ class ResultView: UIView {
         self.addSubview(self.wrongQuestionsLabel)
         self.addSubview(self.scoreLabel)
         self.addSubview(self.tableView)
+        self.addSubview(self.restartButton)
     }
     
     private func configConstraints() {
+        
+        let guide = self.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
         
@@ -114,7 +118,7 @@ class ResultView: UIView {
             self.backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-            self.answeredQuestionsLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 25),
+            self.answeredQuestionsLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: 25),
             self.answeredQuestionsLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             self.answeredQuestionsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             
@@ -128,16 +132,17 @@ class ResultView: UIView {
             
             self.scoreLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.scoreLabel.topAnchor.constraint(equalTo: wrongQuestionsLabel.bottomAnchor, constant: 20),
-            self.scoreLabel.widthAnchor.constraint(equalToConstant: 150),
+            self.scoreLabel.widthAnchor.constraint(equalToConstant: 100),
+            self.scoreLabel.heightAnchor.constraint(equalToConstant: 100),
             
             self.tableView.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 15),
             self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            self.tableView.bottomAnchor.constraint(equalTo: restartButton.topAnchor, constant: -15),
             
-            self.restartButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 25),
             self.restartButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             self.restartButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            self.restartButton.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -30)
+            self.restartButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -60)
             
         ])
     }
