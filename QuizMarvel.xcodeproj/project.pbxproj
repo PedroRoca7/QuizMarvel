@@ -16,6 +16,7 @@
 		CE14EA252A86883200D54BEA /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14EA242A86883200D54BEA /* CustomTableViewCell.swift */; };
 		CE14EA272A8D13B600D54BEA /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14EA262A8D13B600D54BEA /* CellView.swift */; };
 		CE14EA2A2A8D3E6200D54BEA /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE14EA292A8D3E6200D54BEA /* Alert.swift */; };
+		CE604BC42A94168600E00852 /* ChavesDeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE604BC32A94168600E00852 /* ChavesDeAPI.swift */; };
 		CE65E6CE29F067D3003ADBA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65E6CD29F067D3003ADBA3 /* AppDelegate.swift */; };
 		CE65E6D029F067D3003ADBA3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65E6CF29F067D3003ADBA3 /* SceneDelegate.swift */; };
 		CE65E6D229F067D3003ADBA3 /* InitialScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65E6D129F067D3003ADBA3 /* InitialScreenViewController.swift */; };
@@ -66,6 +67,7 @@
 		CE14EA242A86883200D54BEA /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		CE14EA262A8D13B600D54BEA /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		CE14EA292A8D3E6200D54BEA /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		CE604BC32A94168600E00852 /* ChavesDeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChavesDeAPI.swift; sourceTree = "<group>"; };
 		CE65E6CA29F067D3003ADBA3 /* QuizMarvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizMarvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE65E6CD29F067D3003ADBA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE65E6CF29F067D3003ADBA3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				CE65E70229F0816F003ADBA3 /* MarvelAPI.swift */,
+				CE604BC32A94168600E00852 /* ChavesDeAPI.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				CE6777D92A82BF23006EC94B /* Character.swift in Sources */,
 				CE6777DB2A82D4C1006EC94B /* AllPersonQuiz.swift in Sources */,
 				CE65E70929F09080003ADBA3 /* QuizViewController.swift in Sources */,
+				CE604BC42A94168600E00852 /* ChavesDeAPI.swift in Sources */,
 				CE65E6D229F067D3003ADBA3 /* InitialScreenViewController.swift in Sources */,
 				CE65E70B29F090B8003ADBA3 /* ResultViewController.swift in Sources */,
 				CE65E6CE29F067D3003ADBA3 /* AppDelegate.swift in Sources */,
