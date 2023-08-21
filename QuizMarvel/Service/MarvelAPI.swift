@@ -11,7 +11,7 @@ import Alamofire
 
 class MarvelAPI{
     
-    static private let basePath = ChavesDeAPI.url
+    static private let basePath = "https://gateway.marvel.com/v1/public/characters?"
     //  Caso queira usar sua chave privada da Marvel coloque sua chave privada aqui.
     static private let privateKey = ProcessInfo.processInfo.environment["MARVEL_API_PRIVATE_KEY"]
     //  Caso queira usar sua chave publica da Marvel coloque sua chave publica aqui.
