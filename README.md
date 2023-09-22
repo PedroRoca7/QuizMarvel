@@ -10,28 +10,17 @@ O Quiz funciona da seguinte maneira a API traz um personagem aleatorio da Marvel
 ## Layout mobile
 ### Home
 <div> 
-  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/c75d7ed0-f0f2-4314-bae6-2e7d3bcdbe75" width= "250px"/>
+  <img src="https://github.com/PedroRoca7/QuizMarvel/assets/118369268/4240c4c6-6a40-4f1c-b2a6-e8ae326f9bf1" width= "270px"/>
 </div>
 
-### Login
+### Quiz
 <div> 
-  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/966f4587-e9aa-433b-8950-0630e864115b" width= "250px"/>
+  <img src="https://github.com/PedroRoca7/QuizMarvel/assets/118369268/5167580b-dfd6-4f7e-9b1f-f94f57d29e67" width= "270px"/>
 </div>
 
 ### Telas de Registro
 <div> 
-  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/e9fe8c5d-745b-499f-b3fb-77d50412cd6a" width= "250px"/>
-  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/3b920638-9bfb-4e2e-bfca-85614b0e4834" width= "250px"/>
-  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/18f8db58-b2e6-4309-a752-714857c5d0ba" width= "250px"/>
-</div>
-
-### Telas de Menu
-<div> 
-  
-  ### Menu logado como Paciente -- Menu logado como Odontologista
-  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/ae8d30ea-598e-4620-94c4-578a5a98844b" width= "250px"/>
-  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/2a022948-c862-48f0-a9be-7be866690595" width= "250px"/>
-
+  <img src="https://github.com/PedroRoca7/QuizMarvel/assets/118369268/0f29f9cf-885b-480b-bda6-37196c464d48" width= "270px"/>
 </div>
 
 # Tecnologias utilizadas
