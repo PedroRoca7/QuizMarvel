@@ -24,6 +24,12 @@ O Quiz funciona da seguinte maneira a API traz um personagem aleatorio da Marvel
 </div>
 
 # Tecnologias utilizadas
+## Pods
+- Alamofire
+- Kingfisher
+- SwiftHash
+- RxSwift
+- RxCocoa 
 ## Back end
 - API - MarvelComics
 - https://developer.marvel.com
