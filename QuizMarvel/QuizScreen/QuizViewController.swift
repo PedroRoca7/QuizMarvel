@@ -63,7 +63,7 @@ class QuizViewController: UIViewController {
     }
     
     private func resetTimeResults() {
-        seconds = 10
+        seconds = 120
         viewModel.resetTotalanswers()
     }
     
