@@ -14,46 +14,58 @@ class CellView: UIView {
     lazy var personImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.layer.cornerRadius = 15
-        image.layer.borderColor = UIColor.black.cgColor
-        image.layer.borderWidth = 1
+        image.layer.cornerRadius = 20
         image.clipsToBounds = true
-        
         return image
     }()
     
     lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews:[nameCorrectLabel, nameSelectedLabel])
+        let stackView = UIStackView(arrangedSubviews:[nameCorrectLabel,nameCorrectValueLabel,
+                                                      nameSelectedLabel, nameSelectedValueLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = .fill
         stackView.axis = .vertical
         stackView.alignment = .leading
-        stackView.spacing = 5
-        
+        stackView.spacing = 20
         return stackView
     }()
     
     lazy var nameCorrectLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .green
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.numberOfLines = 0
+        label.textColor = .verdeMarinho
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.adjustsFontSizeToFitWidth = true
+        label.text = "Name Correct"
+        return label
+    }()
+    
+    lazy var nameCorrectValueLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .verdeMarinho
+        label.font = .systemFont(ofSize: 20, weight: .bold)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
-        
         return label
     }()
     
     lazy var nameSelectedLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .red
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.numberOfLines = 0
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.adjustsFontSizeToFitWidth = true
+        label.text = "Name selected"
+        return label
+    }()
+    
+    lazy var nameSelectedValueLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 20, weight: .bold)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
-        
         return label
     }()
  
@@ -63,6 +75,7 @@ class CellView: UIView {
         super.init(frame: frame)
         addElementsView()
         configConstraints()
+        setupSpecialSpacingStackView()
     }
     
     required init?(coder: NSCoder) {
@@ -72,6 +85,7 @@ class CellView: UIView {
     private func addElementsView() {
         self.addSubview(self.personImageView)
         self.addSubview(self.stackView)
+        self.backgroundColor = .lilas
     }
     
     private func configConstraints() {
@@ -80,16 +94,18 @@ class CellView: UIView {
             
             self.personImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
             self.personImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            self.personImageView.widthAnchor.constraint(equalToConstant: 80),
-            self.personImageView.heightAnchor.constraint(equalToConstant: 80),
+            self.personImageView.widthAnchor.constraint(equalToConstant: 120),
+            self.personImageView.heightAnchor.constraint(equalToConstant: 120),
             
-            self.stackView.topAnchor.constraint(equalTo: self.topAnchor,constant: 5),
+            self.stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
             self.stackView.leadingAnchor.constraint(equalTo: personImageView.trailingAnchor, constant: 10),
+            self.stackView.heightAnchor.constraint(equalToConstant: 120),
             self.stackView.widthAnchor.constraint(equalToConstant: 200),
-            self.stackView.heightAnchor.constraint(equalToConstant: 80)
-            
         ])
-        
-        
+    }
+    
+    private func setupSpecialSpacingStackView() {
+        stackView.setCustomSpacing(2, after: nameCorrectLabel)
+        stackView.setCustomSpacing(2, after: nameSelectedLabel)
     }
 }

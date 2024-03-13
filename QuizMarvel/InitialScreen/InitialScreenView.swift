@@ -9,31 +9,65 @@ import UIKit
 
 class InitialScreen: UIView {
     
-    lazy var backgroundImage: UIImageView = {
-        let backgroundImage = UIImageView()
-        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
-        backgroundImage.image = UIImage(named: "InitialScreen")
-        backgroundImage.contentMode = .scaleToFill
-        backgroundImage.clipsToBounds = true
-        
-        return backgroundImage
+    lazy var stackView: UIStackView = {
+        let element = UIStackView(arrangedSubviews: [logoImage, letsPlayLabel, playNowButton, aboutButton])
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.axis = .vertical
+        element.alignment = .center
+        element.spacing = 45
+        return element
     }()
     
-    lazy var startButton: UIButton = {
-        let startButton = UIButton()
-        startButton.translatesAutoresizingMaskIntoConstraints = false
-        startButton.setTitle("Start", for: .normal)
-        startButton.setTitleColor(.white, for: .normal)
-        startButton.titleLabel?.font = UIFont(name: "Arial Negrito", size: 20)
-        startButton.layer.cornerRadius = 15
-        startButton.backgroundColor = .orange
-        
-        return startButton
+    lazy var logoImage: UIImageView = {
+        let element = UIImageView()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.image = UIImage(named: "MarvelLogo")
+        element.contentMode = .scaleAspectFit
+        element.clipsToBounds = true
+        element.widthAnchor.constraint(equalToConstant: 280).isActive = true
+        element.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        return element
     }()
     
+    lazy var letsPlayLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.text = "Let's play!"
+        element.font = .customFontModak(nameFont: .modak, size: 48)
+        element.textColor = .white
+        return element
+    }()
+    
+    lazy var playNowButton: UIButton = {
+        let element = UIButton()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.setTitle("Play Now", for: .normal)
+        element.setTitleColor(.white, for: .normal)
+        element.titleLabel?.font = .customFontModak(nameFont: .modak, size: 36)
+        element.layer.cornerRadius = 20
+        element.backgroundColor = .lilas
+        element.widthAnchor.constraint(equalToConstant: 180).isActive = true
+        element.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        return element
+    }()
+    
+    lazy var aboutButton: UIButton = {
+        let element = UIButton()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.setTitle("About", for: .normal)
+        element.setTitleColor(.lilas, for: .normal)
+        element.titleLabel?.font = .customFontModak(nameFont: .modak, size: 36)
+        element.layer.cornerRadius = 20
+        element.layer.borderWidth = 1
+        element.layer.borderColor = UIColor.lilas?.cgColor
+        element.backgroundColor = .clear
+        element.widthAnchor.constraint(equalToConstant: 180).isActive = true
+        element.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        return element
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         addElementsView()
         configConstraints()
     }
@@ -43,30 +77,16 @@ class InitialScreen: UIView {
     }
     
     private func addElementsView() {
-        self.addSubview(self.backgroundImage)
-        self.addSubview(self.startButton)
+        self.backgroundColor = .backgroundColor
+        self.addSubview(stackView)
     }
     
     private func configConstraints() {
-        
         NSLayoutConstraint.activate([
-        
-            self.backgroundImage.topAnchor.constraint(equalTo: self.topAnchor),
-            self.backgroundImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-        
-            self.startButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.startButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -250),
-            self.startButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 50),
-            self.startButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -50),
-            self.startButton.heightAnchor.constraint(equalToConstant: 70)
-            
-            
+            stackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 50),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -80),
         ])
-        
     }
-    
 }
-
-

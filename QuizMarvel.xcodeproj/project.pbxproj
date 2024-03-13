@@ -32,6 +32,11 @@
 		CE65E70D29F098A5003ADBA3 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65E70C29F098A4003ADBA3 /* Quiz.swift */; };
 		CE6777D92A82BF23006EC94B /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6777D82A82BF23006EC94B /* Character.swift */; };
 		CE6777DB2A82D4C1006EC94B /* AllPersonQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6777DA2A82D4C1006EC94B /* AllPersonQuiz.swift */; };
+		CE72B5D62BA0B2AC005080C8 /* Modak-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE72B5D52BA0B2AC005080C8 /* Modak-Regular.ttf */; };
+		CE72B5D92BA0B2F7005080C8 /* Fonts+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72B5D82BA0B2F7005080C8 /* Fonts+Extension.swift */; };
+		CE72B5DB2BA0B6B1005080C8 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72B5DA2BA0B6B1005080C8 /* UIColor+Extension.swift */; };
+		CE72B5DE2BA142AB005080C8 /* ViewScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72B5DD2BA142AB005080C8 /* ViewScore.swift */; };
+		CE72B5E02BA142D1005080C8 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72B5DF2BA142D1005080C8 /* CustomButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +91,11 @@
 		CE65E70C29F098A4003ADBA3 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		CE6777D82A82BF23006EC94B /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		CE6777DA2A82D4C1006EC94B /* AllPersonQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPersonQuiz.swift; sourceTree = "<group>"; };
+		CE72B5D52BA0B2AC005080C8 /* Modak-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Modak-Regular.ttf"; sourceTree = "<group>"; };
+		CE72B5D82BA0B2F7005080C8 /* Fonts+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fonts+Extension.swift"; sourceTree = "<group>"; };
+		CE72B5DA2BA0B6B1005080C8 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		CE72B5DD2BA142AB005080C8 /* ViewScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewScore.swift; sourceTree = "<group>"; };
+		CE72B5DF2BA142D1005080C8 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D4FB683745473895C3C20BF1 /* Pods-QuizMarvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizMarvel.debug.xcconfig"; path = "Target Support Files/Pods-QuizMarvel/Pods-QuizMarvel.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,14 +192,16 @@
 		CE65E6CC29F067D3003ADBA3 /* QuizMarvel */ = {
 			isa = PBXGroup;
 			children = (
+				CE72B5DC2BA14292005080C8 /* Componets */,
+				CE72B5D72BA0B2E4005080C8 /* Extensions */,
+				CE72B5D42BA0B279005080C8 /* Resources */,
 				CE14EA282A8D3E4900D54BEA /* Utils */,
 				CE6777DC2A82DCB0006EC94B /* Model */,
 				CE6777D72A82B295006EC94B /* ResultScreen */,
 				CE6777D62A82B27C006EC94B /* QuizScreen */,
 				CE6777D52A82B249006EC94B /* InitialScreen */,
 				CE9BBF232A0A9BFF0011D555 /* Service */,
-				CE65E6FF29F0809E003ADBA3 /* Delegates */,
-				CE65E6D829F067D8003ADBA3 /* LaunchScreen.storyboard */,
+				CE65E6FF29F0809E003ADBA3 /* Root */,
 				CE65E6D629F067D8003ADBA3 /* Assets.xcassets */,
 				CE65E6DB29F067D8003ADBA3 /* Info.plist */,
 			);
@@ -213,13 +225,14 @@
 			path = QuizMarvelUITests;
 			sourceTree = "<group>";
 		};
-		CE65E6FF29F0809E003ADBA3 /* Delegates */ = {
+		CE65E6FF29F0809E003ADBA3 /* Root */ = {
 			isa = PBXGroup;
 			children = (
 				CE65E6CD29F067D3003ADBA3 /* AppDelegate.swift */,
 				CE65E6CF29F067D3003ADBA3 /* SceneDelegate.swift */,
+				CE65E6D829F067D8003ADBA3 /* LaunchScreen.storyboard */,
 			);
-			path = Delegates;
+			path = Root;
 			sourceTree = "<group>";
 		};
 		CE6777D52A82B249006EC94B /* InitialScreen */ = {
@@ -260,6 +273,32 @@
 				CE6777D82A82BF23006EC94B /* Character.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CE72B5D42BA0B279005080C8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CE72B5D52BA0B2AC005080C8 /* Modak-Regular.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CE72B5D72BA0B2E4005080C8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE72B5D82BA0B2F7005080C8 /* Fonts+Extension.swift */,
+				CE72B5DA2BA0B6B1005080C8 /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE72B5DC2BA14292005080C8 /* Componets */ = {
+			isa = PBXGroup;
+			children = (
+				CE72B5DD2BA142AB005080C8 /* ViewScore.swift */,
+				CE72B5DF2BA142D1005080C8 /* CustomButton.swift */,
+			);
+			path = Componets;
 			sourceTree = "<group>";
 		};
 		CE9BBF232A0A9BFF0011D555 /* Service */ = {
@@ -380,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE65E6DA29F067D8003ADBA3 /* LaunchScreen.storyboard in Resources */,
+				CE72B5D62BA0B2AC005080C8 /* Modak-Regular.ttf in Resources */,
 				CE65E6D729F067D8003ADBA3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,13 +549,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE14EA1E2A83E34800D54BEA /* InitialScreenView.swift in Sources */,
+				CE72B5DB2BA0B6B1005080C8 /* UIColor+Extension.swift in Sources */,
 				CE65E70529F0817F003ADBA3 /* MarvelClasses.swift in Sources */,
 				CE14EA252A86883200D54BEA /* CustomTableViewCell.swift in Sources */,
 				CE14EA2A2A8D3E6200D54BEA /* Alert.swift in Sources */,
+				CE72B5DE2BA142AB005080C8 /* ViewScore.swift in Sources */,
 				CE14EA222A86814700D54BEA /* ResultView.swift in Sources */,
 				CE14EA272A8D13B600D54BEA /* CellView.swift in Sources */,
 				CE6777D92A82BF23006EC94B /* Character.swift in Sources */,
 				CE6777DB2A82D4C1006EC94B /* AllPersonQuiz.swift in Sources */,
+				CE72B5D92BA0B2F7005080C8 /* Fonts+Extension.swift in Sources */,
+				CE72B5E02BA142D1005080C8 /* CustomButton.swift in Sources */,
 				CE65E70929F09080003ADBA3 /* QuizViewController.swift in Sources */,
 				CE65E6D229F067D3003ADBA3 /* InitialScreenViewController.swift in Sources */,
 				CE65E70B29F090B8003ADBA3 /* ResultViewController.swift in Sources */,

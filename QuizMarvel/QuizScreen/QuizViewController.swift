@@ -24,7 +24,7 @@ class QuizViewController: UIViewController {
         return viewModel
     }()
     private let disposedBag = DisposeBag()
-    private var seconds = 120
+    private var seconds = 10
     private var timer = Timer()
     
     override func loadView() {
@@ -41,14 +41,14 @@ class QuizViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         getNewQuiz()
         setupButtonObservers()
-        
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     private func setupButtonObservers() {
         for (index, button) in viewScreen.buttonArray.enumerated() {
             button.rx.tap
                 .subscribe(onNext: { [weak self] in
-                    self?.buttonTapped(index: index, title: button.currentTitle)
+                    self?.buttonTapped(index: index, title: button.textLabel.text)
                 })
                 .disposed(by: disposedBag)
         }
@@ -63,13 +63,11 @@ class QuizViewController: UIViewController {
     }
     
     private func resetTimeResults() {
-        seconds = 120
+        seconds = 10
         viewModel.resetTotalanswers()
     }
     
     private func hiddenTime() {
-        viewScreen.timerSlider.isHidden = true
-        viewScreen.timerSlider.tintColor = .green
         viewScreen.timeLabel.isHidden = true
     }
     private func hiddenButtons() {
@@ -79,7 +77,6 @@ class QuizViewController: UIViewController {
     
     private func showButtons() {
         viewScreen.stackView.isHidden = false
-        viewScreen.timerSlider.isHidden = false
         viewScreen.timeLabel.isHidden = false
         viewScreen.personImage.isHidden = false
     }
@@ -87,11 +84,6 @@ class QuizViewController: UIViewController {
     @objc private func updateTimer() {
         seconds -= 1
         viewScreen.timeLabel.text = String(seconds)
-        
-        viewScreen.timerSlider.value = Float(seconds)
-        if seconds <= 20 {
-            viewScreen.timerSlider.tintColor = .red
-        }
         
         if seconds <= 0 {
             hiddenButtons()
@@ -118,9 +110,9 @@ class QuizViewController: UIViewController {
             viewScreen.personImage.image = nil
         }
         for i in 0..<quiz.options.count {
-            let option = quiz.options[i]
+            let nameOption = quiz.options[i]
             let button = viewScreen.buttonArray[i]
-            button.setTitle(option, for: .normal)
+            button.setupTextButton(text: nameOption)
         }
     }
     

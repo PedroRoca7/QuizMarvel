@@ -13,7 +13,6 @@ class ResultViewController: UIViewController {
     
     private lazy var viewScreen: ResultView = {
         let view = ResultView()
-        
         return view
     }()
     
@@ -32,19 +31,17 @@ class ResultViewController: UIViewController {
         
         configDelegates()
     
-        viewScreen.answeredQuestionsLabel.text = "Perguntas respondidas: \(totalAnswers)"
-        viewScreen.correctQuestionLabel.text = "Respostas corretas: \(totalCorrectAnswers)"
-        viewScreen.wrongQuestionsLabel.text = "Respostas erradas: \(totalAnswers - totalCorrectAnswers)"
+        viewScreen.answeredQuestionsLabel.text = "\(totalCorrectAnswers) out of \(totalAnswers) Questions"
         if totalCorrectAnswers != 0 {
             score = (totalCorrectAnswers*100/totalAnswers)
         }
-        viewScreen.scoreLabel.text = "\(score)%"
+        viewScreen.scoreLabel.scoreLabel.text = "\(score)"
 
         if chars.count == 0 {
             viewScreen.tableView.isHidden = true
         }
         
-        viewScreen.restartButton.rx.tap.bind {
+        viewScreen.tryAgainButton.rx.tap.bind {
             self.navigationController?.pushViewController(QuizViewController(), animated: true)
         }.disposed(by: disposeBag)
     }
@@ -75,6 +72,6 @@ extension ResultViewController: UITableViewDataSource, UITableViewDelegate {
     //MARK: TableView Delegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90.0
+        return 130
     }
 }

@@ -11,86 +11,97 @@ class ResultView: UIView {
     
     //MARK: Visual Elements
     
-    private lazy var backgroundImage: UIImageView = {
-        let backgoundImage = UIImageView()
-        backgoundImage.translatesAutoresizingMaskIntoConstraints = false
-        backgoundImage.image = UIImage(named: "ImageResult")
-        backgoundImage.contentMode = .scaleToFill
-        backgoundImage.clipsToBounds = true
-        backgoundImage.alpha = 0.6
-        
-        return backgoundImage
+    lazy var stackView: UIStackView = {
+        let element = UIStackView()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.axis = .vertical
+        element.spacing = 30
+        return element
+    }()
+    
+    lazy var titleStackView: UIStackView = {
+        let element = UIStackView()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.alignment = .center
+        element.distribution = .fillEqually
+        return element
+    }()
+    
+    lazy var titleResultsLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.textColor = .verdeMarinho
+        element.text = "Results"
+        element.font = .customFontModak(nameFont: .modak, size: 32)
+        return element
+    }()
+    
+    lazy var totalCorrectsAnswered: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.textColor = .white
+        element.text = "Total correct answered"
+        element.font = .customFontModak(nameFont: .modak, size: 24)
+        return element
     }()
     
     lazy var answeredQuestionsLabel: UILabel = {
-        let answeredQuestion = UILabel()
-        answeredQuestion.translatesAutoresizingMaskIntoConstraints = false
-        answeredQuestion.textColor = .black
-        answeredQuestion.font = UIFont(name: "System Semibold", size: 21)
-        answeredQuestion.backgroundColor = .white
-        
-        return answeredQuestion
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.textColor = .verdeMarinho
+        element.font = .customFontModak(nameFont: .modak, size: 22)
+        return element
     }()
     
-    lazy var correctQuestionLabel: UILabel = {
-        let correctQuestion = UILabel()
-        correctQuestion.translatesAutoresizingMaskIntoConstraints = false
-        correctQuestion.textColor = .green
-        correctQuestion.font = UIFont(name: "System Semibold", size: 21)
-        correctQuestion.backgroundColor = .white
-        
-        
-        return correctQuestion
-    }()
-    
-    lazy var wrongQuestionsLabel: UILabel = {
-        let wrongQuestions = UILabel()
-        wrongQuestions.translatesAutoresizingMaskIntoConstraints = false
-        wrongQuestions.textColor = .red
-        wrongQuestions.font = UIFont(name: "System Semibold", size: 21)
-        wrongQuestions.backgroundColor = .white
-        
-        return wrongQuestions
-    }()
-    
-    lazy var scoreLabel: UILabel = {
-        let score = UILabel()
+    lazy var scoreLabel: ViewScore = {
+        let score = ViewScore()
         score.translatesAutoresizingMaskIntoConstraints = false
-        score.textColor = .black
-        score.font = UIFont.systemFont(ofSize: 36)
-        score.textAlignment = .center
-        score.backgroundColor = .white
-        
+        score.backgroundColor = .lilas
+        score.layer.cornerRadius = 20
+        score.heightAnchor.constraint(equalToConstant: 180).isActive = true
         return score
+    }()
+    
+    lazy var wrongAnswers: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.textColor = .white
+        element.text = "Wrong answers"
+        element.font = .customFontModak(nameFont: .modak, size: 22)
+        return element
     }()
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
-        tableView.backgroundColor = .clear
-        
+        tableView.backgroundColor = .lilas
+        tableView.layer.cornerRadius = 20
+        tableView.heightAnchor.constraint(equalToConstant: 130).isActive = true
+        tableView.separatorStyle = .none
         return tableView
     }()
     
-    lazy var restartButton: UIButton = {
-        let restartButton = UIButton()
-        restartButton.translatesAutoresizingMaskIntoConstraints = false
-        restartButton.backgroundColor = .orange
-        restartButton.setTitle("Reiniciar", for: .normal)
-        restartButton.layer.cornerRadius = 15
-        restartButton.layer.borderColor = UIColor.black.cgColor
-        restartButton.layer.borderWidth = 1
-        
-        return restartButton
+    lazy var tryAgainButton: UIButton = {
+        let element = UIButton()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.backgroundColor = .lilas
+        element.setTitleColor(.white, for: .normal)
+        element.titleLabel?.font = .customFontModak(nameFont: .modak, size: 36)
+        element.setTitle("Try Again", for: .normal)
+        element.layer.cornerRadius = 20
+        element.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        return element
     }()
     
     //MARK: Initializers
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .backgroundColor
         addElementsView()
         configConstraints()
+        setupSpecialConstraintsStackView()
     }
     
     required init?(coder: NSCoder) {
@@ -98,53 +109,34 @@ class ResultView: UIView {
     }
     
     private func addElementsView() {
-        self.addSubview(self.backgroundImage)
-        self.addSubview(self.answeredQuestionsLabel)
-        self.addSubview(self.correctQuestionLabel)
-        self.addSubview(self.wrongQuestionsLabel)
-        self.addSubview(self.scoreLabel)
-        self.addSubview(self.tableView)
-        self.addSubview(self.restartButton)
+        stackView.addArrangedSubview(titleStackView)
+        titleStackView.addArrangedSubview(UIView())
+        titleStackView.addArrangedSubview(titleResultsLabel)
+        titleStackView.addArrangedSubview(UIView())
+        
+        stackView.addArrangedSubview(totalCorrectsAnswered)
+        stackView.addArrangedSubview(answeredQuestionsLabel)
+        stackView.addArrangedSubview(scoreLabel)
+        stackView.addArrangedSubview(wrongAnswers)
+        stackView.addArrangedSubview(tableView)
+        stackView.addArrangedSubview(tryAgainButton)
+        
+        self.addSubview(stackView)
+        
     }
-    
+        
     private func configConstraints() {
-        
-        let guide = self.safeAreaLayoutGuide
-        
         NSLayoutConstraint.activate([
-        
-            self.backgroundImage.topAnchor.constraint(equalTo: self.topAnchor),
-            self.backgroundImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            
-            self.answeredQuestionsLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: 25),
-            self.answeredQuestionsLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            self.answeredQuestionsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            
-            self.correctQuestionLabel.topAnchor.constraint(equalTo: answeredQuestionsLabel.bottomAnchor, constant: 15),
-            self.correctQuestionLabel.leadingAnchor.constraint(equalTo: answeredQuestionsLabel.leadingAnchor),
-            self.correctQuestionLabel.trailingAnchor.constraint(equalTo: answeredQuestionsLabel.trailingAnchor),
-            
-            self.wrongQuestionsLabel.topAnchor.constraint(equalTo: correctQuestionLabel.bottomAnchor, constant: 15),
-            self.wrongQuestionsLabel.leadingAnchor.constraint(equalTo: correctQuestionLabel.leadingAnchor),
-            self.wrongQuestionsLabel.trailingAnchor.constraint(equalTo: correctQuestionLabel.trailingAnchor),
-            
-            self.scoreLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.scoreLabel.topAnchor.constraint(equalTo: wrongQuestionsLabel.bottomAnchor, constant: 20),
-            self.scoreLabel.widthAnchor.constraint(equalToConstant: 100),
-            self.scoreLabel.heightAnchor.constraint(equalToConstant: 100),
-            
-            self.tableView.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 15),
-            self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            self.tableView.bottomAnchor.constraint(equalTo: restartButton.topAnchor, constant: -15),
-            
-            self.restartButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            self.restartButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            self.restartButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -60)
-            
+            stackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
         ])
     }
     
+    private func setupSpecialConstraintsStackView() {
+        stackView.setCustomSpacing(3, after: totalCorrectsAnswered)
+        stackView.setCustomSpacing(3, after: wrongAnswers)
+    }
+        
 }

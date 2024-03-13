@@ -11,68 +11,61 @@ class QuizView: UIView {
     
     //MARK: Visual Elements
     
-    private lazy var backgroundImage: UIImageView = {
-        let backgroundImage = UIImageView()
-        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
-        backgroundImage.image = UIImage(named: "background")
-        backgroundImage.contentMode = .scaleToFill
-        backgroundImage.clipsToBounds = true
-        
-        return backgroundImage
-    }()
-    
     lazy var personImage: UIImageView = {
-        let personImage = UIImageView()
-        personImage.translatesAutoresizingMaskIntoConstraints = false
-        personImage.contentMode = .scaleToFill
-        
-        return personImage
+        let element = UIImageView()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.contentMode = .scaleToFill
+        element.heightAnchor.constraint(equalToConstant: 265).isActive = true
+        return element
     }()
     
     lazy var timeLabel: UILabel = {
-        let timeLabel = UILabel()
-        timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        timeLabel.font = UIFont.systemFont(ofSize: 32)
-        timeLabel.textColor = .white
-        timeLabel.layer.borderColor = UIColor.black.cgColor
-        timeLabel.layer.borderWidth = 1
-                
-        return timeLabel
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.font = .customFontModak(nameFont: .modak, size: 42)
+        element.textColor = .white
+        element.textAlignment = .center
+        element.backgroundColor = .lilas
+        return element
     }()
     
-    lazy var timerSlider: UISlider = {
-        let timeSlider = UISlider()
-        timeSlider.translatesAutoresizingMaskIntoConstraints = false
-        timeSlider.minimumValue = 0
-        timeSlider.maximumValue = 120
-        timeSlider.value = 120
-        timeSlider.isEnabled = false
-        
-        return timeSlider
+    lazy var viewContent: UIView = {
+        let element = UIView()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.backgroundColor = .backgroundColor
+        element.layer.cornerRadius = 20
+        return element
     }()
     
     lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: buttonArray)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = .fill
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.spacing = 10
-        
-        return stackView
+        let element = UIStackView(arrangedSubviews: buttonArray)
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.axis = .vertical
+        element.distribution = .fillEqually
+        element.alignment = .leading
+        element.spacing = 15
+        return element
     }()
     
-    lazy var buttonArray: [UIButton] = {
-        var buttonArray: [UIButton] = []
+    lazy var whenPersonLabel: UILabel = {
+        let element = UILabel()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.text = "Quem é nesta imagem?"
+        element.font = .systemFont(ofSize: 24, weight: .bold)
+        element.textColor = .white
+        return element
+    }()
+    
+    lazy var buttonArray: [CustomButton] = {
+        var buttonArray: [CustomButton] = []
         
         while buttonArray.count < 4 {
-            let button = UIButton()
+            let button = CustomButton()
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitle("", for: .normal)
-            button.setTitleColor(.white, for: .normal)
-            button.layer.cornerRadius = 10
-            button.backgroundColor = .orange
-            button.widthAnchor.constraint(equalToConstant: 300).isActive = true
+            button.setupImageButton(image: UIImage(named: "ButtonImage\(buttonArray.count)"))
+            button.layer.cornerRadius = 20
+            button.backgroundColor = .lilas
+            button.widthAnchor.constraint(equalToConstant: 350).isActive = true
             buttonArray.append(button)
         }
         return buttonArray
@@ -91,43 +84,43 @@ class QuizView: UIView {
     }
     
     private func addElementsView() {
-        
-        self.addSubview(self.backgroundImage)
-        self.addSubview(self.timeLabel)
-        self.addSubview(self.personImage)
-        self.addSubview(self.timerSlider)
-        self.addSubview(self.stackView)
-        
+        self.addSubview(personImage)
+        self.addSubview(timeLabel)
+        self.addSubview(viewContent)
+        viewContent.addSubview(whenPersonLabel)
+        viewContent.addSubview(stackView)
+        self.backgroundColor = .white
     }
     
     private func configConstraints() {
-        
-        let guide = self.safeAreaLayoutGuide
-        
+ 
         NSLayoutConstraint.activate([
+                        
+            timeLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 5),
+            timeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            timeLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 70),
+            timeLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 70),
             
-            self.backgroundImage.topAnchor.constraint(equalTo: self.topAnchor),
-            self.backgroundImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            
-            self.timeLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: 10),
-            self.timeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            self.timeLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 55),
+            personImage.topAnchor.constraint(equalTo: self.topAnchor),
+            personImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            personImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
         
-            self.timerSlider.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.timerSlider.trailingAnchor.constraint(equalTo: self.timeLabel.leadingAnchor, constant: -7),
-            self.timerSlider.centerYAnchor.constraint(equalTo: self.timeLabel.centerYAnchor),
+            viewContent.topAnchor.constraint(equalTo: self.topAnchor, constant: 245),
+            viewContent.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            viewContent.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            viewContent.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 30),
             
-            self.personImage.topAnchor.constraint(equalTo: timerSlider.bottomAnchor, constant: 10),
-            self.personImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.personImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            whenPersonLabel.topAnchor.constraint(equalTo: viewContent.topAnchor, constant: 20),
+            whenPersonLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
-            self.stackView.topAnchor.constraint(equalTo: self.personImage.bottomAnchor, constant: 5),
-            self.stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.stackView.bottomAnchor.constraint(equalTo: guide.bottomAnchor,constant: -15)
+            stackView.topAnchor.constraint(equalTo: whenPersonLabel.bottomAnchor, constant: 25),
+            stackView.leadingAnchor.constraint(equalTo: viewContent.leadingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: viewContent.trailingAnchor, constant: -10),
+            stackView.bottomAnchor.constraint(equalTo: viewContent.bottomAnchor, constant: -40),
             
         ])
+        
+        timeLabel.layer.cornerRadius = 35
+        timeLabel.layer.masksToBounds = true
     }
 }

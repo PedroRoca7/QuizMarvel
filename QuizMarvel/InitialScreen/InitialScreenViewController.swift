@@ -24,11 +24,9 @@ class InitialScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewScreen.startButton.rx.tap.bind {
-            self.navigationController?.pushViewController(QuizViewController(), animated: true)
+
+        viewScreen.playNowButton.rx.tap.bind {
+            self.navigationController?.pushViewController(QuizViewController(), animated: false)
         }.disposed(by: disposeBag)
     }
-
-
 }
-
