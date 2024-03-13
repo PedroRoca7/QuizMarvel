@@ -1,44 +1,41 @@
 # QuizMarvel 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/PedroRoca7/QuizMarvel/blob/main/LICENSE) 
+![Framework](https://img.shields.io/badge/framework-UIKit-red?logo=uikit)
 
-# Sobre o projeto
+![Capa](https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/CapaQuizMarvel.png)
 
 QuizMarvel é uma aplicativo mobile que utiliza a API da MarvelComics para gerar um quiz, onde jogador deve acertar o nome do personagem que aparecer na imagem para marcar pontos. 
-
 O Quiz funciona da seguinte maneira a API traz um personagem aleatorio da MarvelComics e o jogador deve acertar seu nome, ao final do quiz o jogador pode ver sua pontuação e ver quais personagens ele errou e qual era a resposta correta. 
 
-## Layout mobile
-### Home
-<div> 
-  <img src="https://github.com/PedroRoca7/QuizMarvel/assets/118369268/4240c4c6-6a40-4f1c-b2a6-e8ae326f9bf1" width= "270px"/>
-</div>
+1. [Frameworks Usados](#frameworks-usados)
+2. [Demonstração](#demonstração)
+3. [Idiomas](#idiomas-disponíveis)
+4. [Licença](#licença)
 
-### Quiz
-<div> 
-  <img src="https://github.com/PedroRoca7/QuizMarvel/assets/118369268/5167580b-dfd6-4f7e-9b1f-f94f57d29e67" width= "270px"/>
-</div>
+## Frameworks Usados
+A aplicação foi feito com a linguagem swift e todo código criado e utilizado está nesse repositório na pasta [QuizMarvel](https://github.com/PedroRoca7/QuizMarvel/tree/main/QuizMarvel). A aplicação possui algumas dependências externas (PODS - Alamofire, Kingfisher, RxSwift).
 
-### Telas de Registro
-<div> 
-  <img src="https://github.com/PedroRoca7/QuizMarvel/assets/118369268/0f29f9cf-885b-480b-bda6-37196c464d48" width= "270px"/>
-</div>
+| **Framework** |   **Uso**  
+|---------------|-----------
+| Alamofire     | Requisições Web 
+| Kingfisher    | Carregamento e o cache de imagens
+| RxSwift       | Programação reativa
+| UIKit         | Aplicação com view code
 
-# Tecnologias utilizadas
-## Pods
-- Alamofire
-- Kingfisher
-- SwiftHash
-- RxSwift
-- RxCocoa 
-## Back end
-- API - MarvelComics
-- https://developer.marvel.com
-## Mobile
-- Swift
-## App
-Pré-requisitos: xCode
-# Autor
+## Demonstração
+<p align="center">
+    <img width=24% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/PlayScreen.png"/>
+    <img width=24% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/QuizScreen.png"/>
+    <img width=24% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/QuizScreen1.png"/>
+    <img width=24% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/QuizScreen2.png"/>
+    <img width=24% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/ResultScreen1.png"/>
+    <img width=24% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/ResultScreen.png"/>
+</p>
 
-Pedro Henrique Roca Moreira
+## Idiomas disponíveis
+|     **Idiomas**     |
+|---------------------|
+| Inglês - Estados Unidos  |
 
-https://www.linkedin.com/in/pedro-henrique-roca-moreira
+## Licença
+Esse projeto é open source e licenciado pela [MIT License](https://github.com/PedroRoca7/QuizMarvel/blob/main/LICENSE).
