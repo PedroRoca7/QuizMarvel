@@ -15,7 +15,7 @@ class ResultView: UIView {
         let element = UIStackView()
         element.translatesAutoresizingMaskIntoConstraints = false
         element.axis = .vertical
-        element.spacing = 30
+        element.spacing = 10
         return element
     }()
     
@@ -130,7 +130,7 @@ class ResultView: UIView {
             stackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -10),
         ])
     }
     

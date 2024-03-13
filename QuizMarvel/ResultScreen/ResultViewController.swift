@@ -39,6 +39,7 @@ class ResultViewController: UIViewController {
 
         if chars.count == 0 {
             viewScreen.tableView.isHidden = true
+            viewScreen.wrongAnswers.isHidden = true
         }
         
         viewScreen.tryAgainButton.rx.tap.bind {
