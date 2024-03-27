@@ -24,12 +24,12 @@ A aplicação foi feito com a linguagem swift e todo código criado e utilizado 
 
 ## Demonstração
 <p align="center">
-    <img width=24% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/PlayScreen.png"/>
-    <img width=24% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/QuizScreen.png"/>
-    <img width=24% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/QuizScreen1.png"/>
-    <img width=24% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/QuizScreen2.png"/>
-    <img width=24% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/ResultScreen1.png"/>
-    <img width=24% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/ResultScreen.png"/>
+    <img width=30% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/PlayScreen.png"/>
+    <img width=30% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/QuizScreen.png"/>
+    <img width=30% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/QuizScreen1.png"/>
+    <img width=30% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/QuizScreen2.png"/>
+    <img width=30% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/ResultScreen1.png"/>
+    <img width=30% src="https://github.com/PedroRoca7/QuizMarvel/blob/main/folder/ResultScreen.png"/>
 </p>
 
 ## Idiomas disponíveis
